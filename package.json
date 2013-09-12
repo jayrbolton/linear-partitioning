@@ -1,0 +1,29 @@
+{
+  "name": "linear-partitioning",
+  "version": "0.0.1",
+  "description": "Given an array of numbers, partition them into a number of buckets, where the sum of each bucket is as close as possible.",
+  "main": "linear-partitioning.js",
+  "dependencies": {
+    "range-function": "~0.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/the-swerve/linear-partitioning.git"
+  },
+  "keywords": [
+    "linear",
+    "partition",
+    "algorithm",
+    "problem",
+    "buckets"
+  ],
+  "author": "jay r bolton <jayrbolton@gmail.com> (http://jayrbolton.com/)",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/the-swerve/linear-partitioning/issues"
+  }
+}
