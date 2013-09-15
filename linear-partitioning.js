@@ -16,7 +16,7 @@ var partition = function(seq, k) {
 		return seq.map(function(x) { return [x]; }).concat(repeat(k - seq.length, []));
 	}
 
-	var seq = seq.slice(0).sort();
+	var seq = seq.slice(0);
 	var dividers = [[], []];
 	sums = prefix_sums(seq, k);
 	conds = boundary_conditions(seq, k, sums);
