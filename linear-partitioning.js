@@ -64,7 +64,7 @@ var reconstruct_partition = function(seq, dividers, k, partitions) {
 Given a list of numbers of length n, loop through it with index 'i'
 Make each element the sum of all the numbers from 0...i
 For example, given [1,2,3,4,5]
-The prefix sums are [1,, 3, ,6,5]
+The prefix sums are [1,3,6,10,15]
 */
 var prefix_sums = function(seq, k) {
 
