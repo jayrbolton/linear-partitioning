@@ -1,4 +1,4 @@
-var lp = require('./linear-partitioning');
+var lp = require('./');
 var cslp = require('./cs/linear_partition');
 
 describe('Linear Partitioning', function () {

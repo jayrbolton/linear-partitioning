@@ -1,6 +1,5 @@
 
 var lp = require('./linear-partitioning.js');
-var range = require('range-function');
 
 console.log(lp([1,1,1,1,1,1,1,1,1], 3));
 

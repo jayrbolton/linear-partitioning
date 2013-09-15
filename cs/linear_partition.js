@@ -93,3 +93,5 @@ linear_partition = function(seq, k) {
     })()
   ].concat(ans);
 };
+
+module.exports = linear_partition

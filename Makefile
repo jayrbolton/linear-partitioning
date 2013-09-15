@@ -1,7 +1,8 @@
 test:
 	@NODE_ENV=test ./node_modules/.bin/mocha \
 		--require should \
-		--reporter spec
+		--reporter spec \
+		--ui bdd
 
 clean:
 	@rm -rf node_modules

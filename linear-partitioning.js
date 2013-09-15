@@ -9,7 +9,7 @@ var repeat = require('repeat-function');
 var partition = function(seq, k) {
 
 	if (k == 0) return [];
-	if (k == 1) return seq;
+	if (k == 1) return [seq];
 
 	if (k >= seq.length) {
 		// return the lists of each single element in sequence, plus empty lists for any extra buckets.
