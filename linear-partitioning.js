@@ -2,17 +2,24 @@
 // Explanation: http://www8.cs.umu.se/kurser/TDBAfl/VT06/algorithms/BOOK/BOOK2/NODE45.HTM
 
 var range = require('range-function');
+var repeat = require('repeat-function');
 
 // Partition seq into k buckets
 
 var partition = function(seq, k) {
 
 	if (k == 0) return [];
-	else if (k == 1) return seq;
+	if (k == 1) return seq;
 
+	if (k >= seq.length) {
+		// return the lists of each single element in sequence, plus empty lists for any extra buckets.
+		return seq.map(function(x) { return [x]; }).concat(repeat(k - seq.length, []));
+	}
+
+	var seq = seq.slice(0).sort();
+	var dividers = [[], []];
 	sums = prefix_sums(seq, k);
 	conds = boundary_conditions(seq, k, sums);
-	dividers = [];
 
 	// evaluate main recurrence
 	range(2, seq.length, 'inclusive').map(function(i) {
@@ -35,7 +42,6 @@ var partition = function(seq, k) {
 	});
 
 	return(reconstruct_partition(seq, dividers, k, []));
-
 };
 
 /* Work our way back up through the dividers, referencing each divider that we
@@ -46,8 +52,7 @@ var reconstruct_partition = function(seq, dividers, k, partitions) {
 
 	while (k > 0) {
 		var divider = dividers[seq.length][k];
-		var part = seq.slice(divider);
-		seq.splice(divider);
+		var part = seq.splice(divider);
 		partitions.push(part);
 		--k;
 	}
@@ -59,11 +64,11 @@ var reconstruct_partition = function(seq, dividers, k, partitions) {
 Given a list of numbers of length n, loop through it with index 'i'
 Make each element the sum of all the numbers from 0...i
 For example, given [1,2,3,4,5]
-The prefix sums are [1,3,6,10,15]
+The prefix sums are [1,, 3, ,6,5]
 */
-var prefix_sums =  function(seq, k) {
+var prefix_sums = function(seq, k) {
 
-	sums = [0];
+	sums = [0] ;
 
 	range(1, seq.length, 'inclusive').map(function(i) {
 		sums[i] = sums[i - 1] + seq[i - 1];
