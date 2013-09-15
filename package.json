@@ -13,7 +13,7 @@
     "underscore": "*"
   },
   "scripts": {
-    "test": "mocha --reporter list --ui tdd tests.js"
+    "test": "make"
   },
   "repository": {
     "type": "git",
