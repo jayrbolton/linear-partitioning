@@ -39,15 +39,11 @@ describe('Linear Partitioning', function () {
     })
 
     it('should work with 33 partitions', function () {
-      compare(32);
+      compare(33);
     })
 
     it('should work with 56 partitions', function () {
-      compare(32);
-    })
-
-    it('should work with 99 partitions', function () {
-      compare(32);
+      compare(56);
     })
   })
 })
