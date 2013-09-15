@@ -53,7 +53,7 @@ var reconstruct_partition = function(seq, dividers, k, partitions) {
 	while (k > 0) {
 		var divider = dividers[seq.length][k];
 		var part = seq.splice(divider);
-		partitions.push(part);
+		partitions.unshift(part);
 		--k;
 	}
 
