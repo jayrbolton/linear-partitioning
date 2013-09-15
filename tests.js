@@ -7,7 +7,7 @@ test('partitions equal elements', function() {
 	assert.deepEqual(lp(ex, 3), [[1,1,1],[1,1,1],[1,1,1]]);
 });
 
-test('partitions 1 through 9', function() {
+test('partitions 1..9', function() {
 	var ex = [1,2,3,4,5,6,7,8,9];
 	assert.deepEqual(lp(ex, 3), [[1,2,3,4,5],[6,7],[8,9]]);
 });
