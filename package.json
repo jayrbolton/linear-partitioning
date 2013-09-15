@@ -7,7 +7,11 @@
     "repeat-function": "~0.1.0",
     "range-function": "~0.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*",
+    "underscore": "*"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
