@@ -17,7 +17,7 @@ var partition = function(seq, k) {
 	}
 
 	var seq = seq.slice(0);
-	var dividers = [[], []];
+	var dividers = [];
 	sums = prefix_sums(seq, k);
 	conds = boundary_conditions(seq, k, sums);
 
@@ -32,7 +32,7 @@ var partition = function(seq, k) {
 				s = Math.max(conds[x][j-1], sums[i] - sums[x]);
 				dividers[i] = dividers[i] || [];
 
-				if (conds[i][j] == undefined || conds[i][j] > s) {
+				if (conds[i][j] == undefined || conds[i][j] >= s) {
 					conds[i][j] = s;
 					dividers[i][j] = x;
 				}
@@ -50,12 +50,14 @@ var partition = function(seq, k) {
 var reconstruct_partition = function(seq, dividers, k, partitions) {
 	partitions = [];
 
-	while (k > 0) {
+	while (k > 1) {
 		var divider = dividers[seq.length][k];
 		var part = seq.splice(divider);
 		partitions.unshift(part);
 		--k;
 	}
+
+	partitions.unshift(seq);
 
 	return partitions;
 };
@@ -68,7 +70,7 @@ The prefix sums are [1,3,6,10,15]
 */
 var prefix_sums = function(seq, k) {
 
-	sums = [0] ;
+	sums = [0];
 
 	range(1, seq.length, 'inclusive').map(function(i) {
 		sums[i] = sums[i - 1] + seq[i - 1];

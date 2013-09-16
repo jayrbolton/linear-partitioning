@@ -4,7 +4,7 @@
   "description": "Given an array of numbers, partition them into a number of buckets, where the ranges of each bucket are as close as possible.",
   "main": "linear-partitioning.js",
   "dependencies": {
-    "repeat-function": "~0.1.0",
+    "repeat-function": "~0.2.1",
     "range-function": "~0.1.1"
   },
   "devDependencies": {
