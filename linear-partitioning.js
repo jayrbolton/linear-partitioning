@@ -30,9 +30,10 @@ var partition = function(seq, k) {
 			range(1, i-1, 'inclusive').map(function(x) {
 
 				s = Math.max(conds[x][j-1], sums[i] - sums[x]);
-				dividers[i] = dividers[i] || [];
+				dividers[i] = dividers[i] || []; // Initialize a new row in the dividers matrix (unless it's already initialized).
 
-				if (conds[i][j] == undefined || conds[i][j] >= s) {
+				// Continue to find the cost of the largest range in the optimal partition.
+				if (conds[i][j] == undefined || conds[i][j] > s) {
 					conds[i][j] = s;
 					dividers[i][j] = x;
 				}
@@ -51,9 +52,11 @@ var reconstruct_partition = function(seq, dividers, k, partitions) {
 	partitions = [];
 
 	while (k > 1) {
-		var divider = dividers[seq.length][k];
-		var part = seq.splice(divider);
-		partitions.unshift(part);
+		if (dividers[seq.length]) { 
+			var divider = dividers[seq.length][k];
+			var part = seq.splice(divider);
+			partitions.unshift(part);
+		}
 		--k;
 	}
 
