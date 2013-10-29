@@ -3,12 +3,11 @@
   "version": "0.2.1",
   "description": "Given an array of numbers, partition them into a number of buckets, preserving order, where the ranges of each bucket are as close as possible.",
   "main": "linear-partitioning.js",
-  "dependencies": {
-    "repeat-function": "~0.2.1",
-    "range-function": "~0.1.1"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "mocha": "*"
+		"repeat-function": "~0.2.1",
+    "mocha": "~1.13.0",
+		"bench": "~0.3.5"
   },
   "scripts": {
     "test": "mocha --ui bdd --reporter spec ./test.js"

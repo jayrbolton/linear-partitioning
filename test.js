@@ -1,7 +1,7 @@
 var lp = require('./');
 var repeat = require('repeat-function');
 var assert = require('assert');
-var coffee_partition = require('./alternate_implementations_for_testing/partition.js');
+var coffee_partition = require('./alternate_implementation_for_testing/partition.js');
 
 describe('Linear Partitioning', function () {
 

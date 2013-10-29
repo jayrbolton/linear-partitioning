@@ -1,9 +1,6 @@
 
 // Explanation: http://www8.cs.umu.se/kurser/TDBAfl/VT06/algorithms/BOOK/BOOK2/NODE45.HTM
 
-var range = require('range-function');
-var repeat = require('repeat-function');
-
 // Partition seq into k buckets
 
 var partition = function(seq, k) {
@@ -13,7 +10,9 @@ var partition = function(seq, k) {
 
 	if (k >= seq.length) {
 		// return the lists of each single element in sequence, plus empty lists for any extra buckets.
-		return seq.map(function(x) { return [x]; }).concat(repeat(k - seq.length, []));
+		var repeated =  [];
+		for (var i = 0; i < k - seq.length; ++i) repeated.push([]);
+		return seq.map(function(x) { return [x]; }).concat(repeated);
 	}
 
 	var seq = seq.slice(0);
@@ -22,12 +21,12 @@ var partition = function(seq, k) {
 	conds = boundary_conditions(seq, k, sums);
 
 	// evaluate main recurrence
-	range(2, seq.length, 'inclusive').map(function(i) {
-		range(2, k, 'inclusive').map(function(j) {
+	for(var i = 2; i <= seq.length; ++i) {
+		for(var j = 2; j <= k; ++j) {
 
 			conds[i][j] = undefined;
 
-			range(1, i-1, 'inclusive').map(function(x) {
+			for(var x = 1; x < i; ++x) {
 
 				s = Math.max(conds[x][j-1], sums[i] - sums[x]);
 				dividers[i] = dividers[i] || []; // Initialize a new row in the dividers matrix (unless it's already initialized).
@@ -38,9 +37,9 @@ var partition = function(seq, k) {
 					dividers[i][j] = x;
 				}
 
-			});
-		});
-	});
+			}
+		}
+	}
 
 	return(reconstruct_partition(seq, dividers, k, []));
 };
@@ -75,9 +74,9 @@ var prefix_sums = function(seq, k) {
 
 	sums = [0];
 
-	range(1, seq.length, 'inclusive').map(function(i) {
+	for(var i = 1; i <= seq.length; ++i) {
 		sums[i] = sums[i - 1] + seq[i - 1];
-	});
+	}
 
 	return sums;
 };
@@ -87,14 +86,14 @@ var prefix_sums = function(seq, k) {
 var boundary_conditions = function(seq, k, sums) {
 	conds = [];
 
-	range(1, seq.length, 'inclusive').map(function(i) {
+	for(var i = 1; i <= seq.length; ++i) {
 		conds[i] = [];
 		conds[i][1] = sums[i];
-	});
+	}
 
-	range(1, k, 'inclusive').map(function(j) {
+	for(var j = 1; j <= k; ++j) {
 		conds[1][j] = seq[0];
-	});
+	}
 
 	return conds;
 };
