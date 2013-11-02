@@ -3,36 +3,37 @@
 
 // Partition seq into k buckets
 
-var partition = function(seq, k) {
 
-	if (k == 0) return [];
-	if (k == 1) return [seq];
+var partition = function (seq, k) {
+
+	if (k === 0) return [];
+	if (k === 1) return [seq];
 
 	if (k >= seq.length) {
 		// return the lists of each single element in sequence, plus empty lists for any extra buckets.
 		var repeated =  [];
-		for (var i = 0; i < k - seq.length; ++i) repeated.push([]);
+		for (var q = 0; q < k - seq.length; ++q) repeated.push([]);
 		return seq.map(function(x) { return [x]; }).concat(repeated);
 	}
 
-	var seq = seq.slice(0);
+	var sequence = seq.slice(0);
 	var dividers = [];
-	sums = prefix_sums(seq, k);
-	conds = boundary_conditions(seq, k, sums);
+	var sums = prefix_sums(sequence, k);
+	var conds = boundary_conditions(sequence, k, sums);
 
 	// evaluate main recurrence
-	for(var i = 2; i <= seq.length; ++i) {
+	for(var i = 2; i <= sequence.length; ++i) {
 		for(var j = 2; j <= k; ++j) {
 
 			conds[i][j] = undefined;
 
 			for(var x = 1; x < i; ++x) {
 
-				s = Math.max(conds[x][j-1], sums[i] - sums[x]);
+				var s = Math.max(conds[x][j-1], sums[i] - sums[x]);
 				dividers[i] = dividers[i] || []; // Initialize a new row in the dividers matrix (unless it's already initialized).
 
 				// Continue to find the cost of the largest range in the optimal partition.
-				if (conds[i][j] == undefined || conds[i][j] > s) {
+				if (conds[i][j] === undefined || conds[i][j] > s) {
 					conds[i][j] = s;
 					dividers[i][j] = x;
 				}
@@ -41,14 +42,14 @@ var partition = function(seq, k) {
 		}
 	}
 
-	return(reconstruct_partition(seq, dividers, k, []));
+	return(reconstruct_partition(sequence, dividers, k));
 };
 
 /* Work our way back up through the dividers, referencing each divider that we
  * saved given a value for k and a length of seq, using each divider to make
  * the partitions. */
-var reconstruct_partition = function(seq, dividers, k, partitions) {
-	partitions = [];
+var reconstruct_partition = function(seq, dividers, k) {
+	var partitions = [];
 
 	while (k > 1) {
 		if (dividers[seq.length]) { 
@@ -72,7 +73,7 @@ The prefix sums are [1,3,6,10,15]
 */
 var prefix_sums = function(seq, k) {
 
-	sums = [0];
+	var sums = [0];
 
 	for(var i = 1; i <= seq.length; ++i) {
 		sums[i] = sums[i - 1] + seq[i - 1];
@@ -84,7 +85,7 @@ var prefix_sums = function(seq, k) {
 /* This matrix holds the maximum sums over all the ranges given the length of
  * seq and the number of buckets (k) */
 var boundary_conditions = function(seq, k, sums) {
-	conds = [];
+	var conds = [];
 
 	for(var i = 1; i <= seq.length; ++i) {
 		conds[i] = [];
