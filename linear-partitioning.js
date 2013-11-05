@@ -1,4 +1,3 @@
-
 // Explanation: http://www8.cs.umu.se/kurser/TDBAfl/VT06/algorithms/BOOK/BOOK2/NODE45.HTM
 
 // Partition seq into k buckets
@@ -71,7 +70,7 @@ Make each element the sum of all the numbers from 0...i
 For example, given [1,2,3,4,5]
 The prefix sums are [1,3,6,10,15]
 */
-var prefix_sums = function(seq, k) {
+var prefix_sums = function(seq) {
 
 	var sums = [0];
 
