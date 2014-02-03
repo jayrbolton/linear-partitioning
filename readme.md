@@ -24,5 +24,5 @@ component install the-swerve/linear-partitioning
 on npm
 
 ```sh
-npm install linear-partinioning
+npm install linear-partitioning
 ```
