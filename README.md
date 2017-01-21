@@ -19,3 +19,16 @@ See http://www8.cs.umu.se/kurser/TDBAfl/VT06/algorithms/BOOK/BOOK2/NODE45.HTM
 Run tests with `npm run test` or `tape test | faucet`
 
 Run benchmarks with `node benchmarks`
+
+#### benchmarks
+
+This library was a re-implementation of a horrendous coffeescript function that people used to use. Here are benchmark results when compared to that older implementation:
+
+```
+Winner: ours
+Compared with next highest (coffeescript), it's:
+91.73% faster
+12.09 times as fast
+1.08 order(s) of magnitude faster
+A LOT FASTER
+```
