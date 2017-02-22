@@ -1,6 +1,6 @@
 {
   "name": "linear-partitioning",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Given an array of numbers, partition them into a number of buckets, preserving order, where the ranges of each bucket are as close as possible.",
   "main": "index.js",
   "dependencies": {},
